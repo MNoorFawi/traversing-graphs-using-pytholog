@@ -1,6 +1,6 @@
 # Finding paths in a graph using pytholog
 
-Will use [pytholog](github.com/mnoorfawi/pytholog) library.
+We will use [pytholog](https://github.com/MNoorFawi/pytholog) library.
 
 We will define a **weighted undirected graph** for the largest MSAs in USA.
 
