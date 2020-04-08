@@ -1,6 +1,6 @@
 import pytholog as pl
 
-graph_kb = pl.knowledge_base("MSA_graph")
+graph_kb = pl.KnowledgeBase("MSA_graph")
 graph_kb([## routes between adjacent cities
     "route(seattle, chicago, 1737)",
     "route(seattle, san_francisco, 678)",
@@ -36,7 +36,7 @@ graph_kb([## routes between adjacent cities
     "path(X, Y, P) :- route(Y, Z, P2), path(Z, X, P3), P is P2 + P3"
         ])
         
-x, y = graph_kb.query(pl.pl_expr("path(boston, miami, Weight)"), cut = True, show_path = True) ## cut argument to stop searching when a path is found
+x, y = graph_kb.query(pl.Expr("path(boston, miami, Weight)"), cut = True, show_path = True) ## cut argument to stop searching when a path is found
 print(x)
 print([x for x in y if str(x) > "Z"]) ## remove weights in the visited nodes
 
@@ -44,42 +44,42 @@ print([x for x in y if str(x) > "Z"]) ## remove weights in the visited nodes
 # ['washington', 'new_york', 'philadelphia']
 
 ## the other way
-x, y = graph_kb.query(pl.pl_expr("path(miami, boston, Weight)"), cut = True, show_path = True)
+x, y = graph_kb.query(pl.Expr("path(miami, boston, Weight)"), cut = True, show_path = True)
 print(x)
 print([x for x in y if str(x) > "Z"])
 
 # [{'Weight': 1317}]
 # ['new_york', 'washington', 'philadelphia']
 
-x, y = graph_kb.query(pl.pl_expr("path(seattle, washington, Weight)"), cut = True, show_path = True)
+x, y = graph_kb.query(pl.Expr("path(seattle, washington, Weight)"), cut = True, show_path = True)
 print(x)
 print([x for x in y if str(x) > "Z"])
 
 # [{'Weight': 2371}]
 # ['chicago', 'detroit']
 
-x, y = graph_kb.query(pl.pl_expr("path(san_francisco, atlanta, Weight)"), cut = True, show_path = True)
+x, y = graph_kb.query(pl.Expr("path(san_francisco, atlanta, Weight)"), cut = True, show_path = True)
 print(x)
 print([x for x in y if str(x) > "Z"])
 
 # [{'Weight': 2678}]
 # ['houston', 'dallas', 'riverside', 'chicago']
 
-x, y = graph_kb.query(pl.pl_expr("path(chicago, detroit, Weight)"), cut = True, show_path = True)
+x, y = graph_kb.query(pl.Expr("path(chicago, detroit, Weight)"), cut = True, show_path = True)
 print(x)
 print([x for x in y if str(x) > "Z"])
 
 # [{'Weight': '238'}]
 # []
 
-x, y = graph_kb.query(pl.pl_expr("path(los_angeles, dallas, Weight)"), cut = True, show_path = True)
+x, y = graph_kb.query(pl.Expr("path(los_angeles, dallas, Weight)"), cut = True, show_path = True)
 print(x)
 print([x for x in y if str(x) > "Z"])
 
 # [{'Weight': 1244}]
 # ['phoenix']
 
-x, y = graph_kb.query(pl.pl_expr("path(riverside, washington, Weight)"), cut = True, show_path = True)
+x, y = graph_kb.query(pl.Expr("path(riverside, washington, Weight)"), cut = True, show_path = True)
 print(x)
 print([x for x in y if str(x) > "Z"])
 

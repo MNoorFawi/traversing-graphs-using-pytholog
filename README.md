@@ -13,7 +13,7 @@ We first import the library and define the nodes and edges of the graph as prolo
 ```python
 import pytholog as pl
 
-graph_kb = pl.knowledge_base("MSA_graph")
+graph_kb = pl.KnowledgeBase("MSA_graph")
 graph_kb([## routes between adjacent cities
     "route(seattle, chicago, 1737)",
     "route(seattle, san_francisco, 678)",
@@ -57,7 +57,7 @@ Now let's search for some paths between some cities.
 ###### pytholog uses Breadth-First Search algorithm to search for paths, So not always the result will be the shortest path but most of the cases it is. One more things the visited note returned when show_path = True, can be more than the one used to calculate the weight reponse, this is because the bfs search checks all nodes next to the current node and return it as visited, but you can see the actual path from the image which will lead to the result weight. Future implementations will support other kind of search algorithms. 
 
 ```python
-x, y = graph_kb.query(pl.pl_expr("path(boston, miami, Weight)"), cut = True, show_path = True) ## cut argument to stop searching when a path is found
+x, y = graph_kb.query(pl.Expr("path(boston, miami, Weight)"), cut = True, show_path = True) ## cut argument to stop searching when a path is found
 print(x)
 print([x for x in y if str(x) > "Z"]) ## remove weights in the visited nodes
 
@@ -70,7 +70,7 @@ The shortes possible path between the two cities!
 
 ```python
 ## the other way
-x, y = graph_kb.query(pl.pl_expr("path(miami, boston, Weight)"), cut = True, show_path = True)
+x, y = graph_kb.query(pl.Expr("path(miami, boston, Weight)"), cut = True, show_path = True)
 print(x)
 [x for x in y if str(x) > "Z"]
 
@@ -79,7 +79,7 @@ print(x)
 ```
 
 ```python
-x, y = graph_kb.query(pl.pl_expr("path(seattle, washington, Weight)"), cut = True, show_path = True)
+x, y = graph_kb.query(pl.Expr("path(seattle, washington, Weight)"), cut = True, show_path = True)
 print(x)
 [x for x in y if str(x) > "Z"]
 
@@ -88,7 +88,7 @@ print(x)
 ```
 
 ```python
-x, y = graph_kb.query(pl.pl_expr("path(san_francisco, atlanta, Weight)"), cut = True, show_path = True)
+x, y = graph_kb.query(pl.Expr("path(san_francisco, atlanta, Weight)"), cut = True, show_path = True)
 print(x)
 [x for x in y if str(x) > "Z"]
 
@@ -101,7 +101,7 @@ Note also that the path given show "Houston & Dallas" but if you calculate the w
 But the value is given because they were checked.
 
 ```python
-x, y = graph_kb.query(pl.pl_expr("path(chicago, detroit, Weight)"), cut = True, show_path = True)
+x, y = graph_kb.query(pl.Expr("path(chicago, detroit, Weight)"), cut = True, show_path = True)
 print(x)
 [x for x in y if str(x) > "Z"]
 
@@ -110,7 +110,7 @@ print(x)
 ```
 
 ```python
-x, y = graph_kb.query(pl.pl_expr("path(los_angeles, dallas, Weight)"), cut = True, show_path = True)
+x, y = graph_kb.query(pl.Expr("path(los_angeles, dallas, Weight)"), cut = True, show_path = True)
 print(x)
 [x for x in y if str(x) > "Z"]
 
@@ -119,7 +119,7 @@ print(x)
 ```
 
 ```python
-x, y = graph_kb.query(pl.pl_expr("path(riverside, washington, Weight)"), cut = True, show_path = True)
+x, y = graph_kb.query(pl.Expr("path(riverside, washington, Weight)"), cut = True, show_path = True)
 print(x)
 [x for x in y if str(x) > "Z"]
 
